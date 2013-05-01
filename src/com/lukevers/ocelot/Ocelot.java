@@ -1,7 +1,9 @@
-package ocelot;
+package com.lukevers.ocelot;
 
 import java.util.logging.Logger;
 
+import org.bukkit.Location;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerLoginEvent;
@@ -26,33 +28,19 @@ public final class Ocelot extends JavaPlugin {
 	
 	@EventHandler 
 	public void onPlayerLogin(PlayerLoginEvent event) {
-		if (this.getConfig().getString(event.getPlayer().getName()).equals(null)) {
-			setDefaults(event.getPlayer());
-		} else updateConfig(event.getPlayer());
+		updateConfig(event.getPlayer());
 	} // close on player login
 	
 	@EventHandler
 	public void onPlayerLogout(PlayerQuitEvent event) {
-		
+		updateConfig(event.getPlayer());
 	} // close on player logout
 	
 	@EventHandler
 	public void onPlayerMove(PlayerMoveEvent event) {
 		updateConfig(event.getPlayer());
 	} // close on player move
-	
-	/**
-	 * Set Defaults
-	 * 
-	 * If a player is not in the current configuration
-	 * file then we need to add that player to the file.
-	 * 
-	 * @param player
-	 */
-	private void setDefaults(Player player) {
-		
-	} // close set defaults
-	
+
 	/**
 	 * Update Configuration File
 	 * 
@@ -64,14 +52,32 @@ public final class Ocelot extends JavaPlugin {
 	 * 
 	 * 1. Is the player online? {{boolean}} (true:yes|false:no)
 	 * 2. What's the player's health? {{int}}
-	 * 3. What is the player's location? {{Location}}
-	 * 4. What's the player's hunger? {{int}}
-	 * 5. What's the player's level? {{int}}
+	 * 3. What's the player's food level? {{int}}
+	 * 4. What's the player's level? {{int}}
+	 * 5. What is the player's location? {{Location}}
 	 * 
 	 * @param player
 	 */
 	private void updateConfig(Player player) {
+		// Get the configuration file and player name
+		FileConfiguration config = this.getConfig();
+		String name = player.getName();
 		
+		// Set variables to be updated
+		boolean online = player.isOnline();
+		int health = player.getHealth();
+		int food = player.getFoodLevel();
+		int level = player.getLevel();
+		Location loc = player.getLocation();
+		
+		// Set the configuration file variables
+		config.set(name+".online", online);
+		config.set(name+".health", health);
+		config.set(name+".foodlevel", food);
+		config.set(name+".level", level);
+		config.set(name+".location.x", loc.getX());
+		config.set(name+".location.y", loc.getY());
+		config.set(name+".location.z", loc.getZ());
 	} // close update configuration file
 	
 	

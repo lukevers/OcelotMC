@@ -1,5 +1,5 @@
 name: Ocelot
 version: 0.0.1
-main: com.lukevers.ocelot.Ocelot
+main: com.lukevers.ocelot.Ocelot.
 description: Real-time updates on players
 author: Luke Evers
