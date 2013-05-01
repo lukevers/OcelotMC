@@ -9,6 +9,9 @@ require('js-yaml');
 // Create the express app
 var app = express();
 
+// Just for the time being
+var path = '/Users/lukevers/Desktop/m/plugins/Ocelot/config.yml';
+
 // Configure Express
 app.configure(function() {
 	app.set('views', __dirname + '/public');
@@ -18,8 +21,8 @@ app.configure(function() {
 	app.use(app.router);
 });
 
-var config = require('/Users/lukevers/Desktop/m/plugins/Ocelot/config.yml');
-console.log(config);
+// Load the yml file
+var config = require(path);
 
 // 404 Page
 app.use(function(req, res, next){
