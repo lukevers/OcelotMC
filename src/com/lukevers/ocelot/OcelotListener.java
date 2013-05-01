@@ -10,26 +10,25 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class OcelotListener extends JavaPlugin implements Listener {
+public class OcelotListener implements Listener {
+	
+	private JavaPlugin plugin;
+	
+	public OcelotListener(JavaPlugin plugin) {
+		this.plugin = plugin;
+	} // close constructor
 	
 	@EventHandler (priority = EventPriority.HIGHEST)
 	public void onPlayerLogin(PlayerLoginEvent event) {
-		// On logging in, update all
-		updateOnlineStatus(event.getPlayer());
-		updateLocation(event.getPlayer());
-		updateFoodLevel(event.getPlayer());
-		updateHealth(event.getPlayer());
-		updateLevel(event.getPlayer());
+		this.plugin.getConfig().set(event.getPlayer().getName()+".online", true);
+		this.plugin.saveConfig();
 	} // close on player login
 	
 	@EventHandler (priority = EventPriority.HIGHEST)
 	public void onPlayerLogout(PlayerQuitEvent event) {
 		// On logging out, update all
-		updateOnlineStatus(event.getPlayer());
-		updateLocation(event.getPlayer());
-		updateFoodLevel(event.getPlayer());
-		updateHealth(event.getPlayer());
-		updateLevel(event.getPlayer());
+		this.plugin.getConfig().set(event.getPlayer().getName()+".online", false);
+		this.plugin.saveConfig();
 	} // close on player logout
 	
 	@EventHandler (priority = EventPriority.HIGHEST)
@@ -55,23 +54,10 @@ public class OcelotListener extends JavaPlugin implements Listener {
 	 * @param player
 	 */
 	private void updateLocation(Player player) {
-		this.getConfig().set(player.getName()+".location.x", player.getLocation().getX());
-		this.getConfig().set(player.getName()+".location.y", player.getLocation().getY());
-		this.getConfig().set(player.getName()+".location.z", player.getLocation().getZ());
-		this.saveConfig();
-	} // close update online status
-	
-	/**
-	 * Update Online Status
-	 * 
-	 * Whenever a player either logs in or logs out,
-	 * their online status will be updated to the correct value.
-	 * 
-	 * @param player
-	 */
-	private void updateOnlineStatus(Player player) {
-		this.getConfig().set(player.getName()+".online", player.isOnline());
-		this.saveConfig();
+		this.plugin.getConfig().set(player.getName()+".location.x", player.getLocation().getX());
+		this.plugin.getConfig().set(player.getName()+".location.y", player.getLocation().getY());
+		this.plugin.getConfig().set(player.getName()+".location.z", player.getLocation().getZ());
+		this.plugin.saveConfig();
 	} // close update online status
 	
 	/**
@@ -83,8 +69,8 @@ public class OcelotListener extends JavaPlugin implements Listener {
 	 * @param player
 	 */
 	private void updateLevel(Player player) {
-		this.getConfig().set(player.getName()+".level", player.getLevel());
-		this.saveConfig();
+		this.plugin.getConfig().set(player.getName()+".level", player.getLevel());
+		this.plugin.saveConfig();
 	} // close update level
 	
 	/**
@@ -96,8 +82,8 @@ public class OcelotListener extends JavaPlugin implements Listener {
 	 * @param player
 	 */
 	private void updateHealth(Player player) {
-		this.getConfig().set(player.getName()+".level", player.getHealth());
-		this.saveConfig();
+		this.plugin.getConfig().set(player.getName()+".health", player.getHealth());
+		this.plugin.saveConfig();
 	} // close update health
 	
 	/**
@@ -109,8 +95,8 @@ public class OcelotListener extends JavaPlugin implements Listener {
 	 * @param player
 	 */
 	private void updateFoodLevel(Player player) {
-		this.getConfig().set(player.getName()+".level", player.getFoodLevel());
-		this.saveConfig();
+		this.plugin.getConfig().set(player.getName()+".foodlevel", player.getFoodLevel());
+		this.plugin.saveConfig();
 	} // close update food level
 	
 } // close ocelot listener

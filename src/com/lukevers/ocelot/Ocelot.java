@@ -12,7 +12,7 @@ public final class Ocelot extends JavaPlugin {
 	@Override 
 	public void onEnable() {
 		log.info("Ocelot enabled!");
-		this.getServer().getPluginManager().registerEvents(new OcelotListener(), this);
+		this.getServer().getPluginManager().registerEvents(new OcelotListener(this), this);
 	} // close on enable
 	
 	@Override
