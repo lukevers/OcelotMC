@@ -70,13 +70,14 @@ public final class Ocelot extends JavaPlugin {
 		Location loc = player.getLocation();
 		
 		// Set the configuration file variables
-		getConfig().set(name+".online", online);
-		getConfig().set(name+".health", health);
-		getConfig().set(name+".foodlevel", food);
-		getConfig().set(name+".level", level);
-		getConfig().set(name+".location.x", loc.getX());
-		getConfig().set(name+".location.y", loc.getY());
-		getConfig().set(name+".location.z", loc.getZ());
+		this.getConfig().set(name+".online", online);
+		this.getConfig().set(name+".health", health);
+		this.getConfig().set(name+".foodlevel", food);
+		this.getConfig().set(name+".level", level);
+		this.getConfig().set(name+".location.x", loc.getX());
+		this.getConfig().set(name+".location.y", loc.getY());
+		this.getConfig().set(name+".location.z", loc.getZ());
+		this.saveConfig();
 	} // close update configuration file
 	
 	
