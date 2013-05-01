@@ -4,4 +4,10 @@ html
 		title Ocelot
 		link(rel="stylesheet", href="/css/style.css")
 	body
-		Ocelot
+		for val, key in pageData
+			if (val.online)
+				.user 
+					.name #{key}
+					.online #{val.online} 
+					.hunger #{val.foodlevel} 
+					.health #{val.health} 

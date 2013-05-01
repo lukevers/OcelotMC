@@ -1,8 +1,10 @@
-//
+//	Ocelot
+//	
 //	server.js
 //
 
 var express = require('express');
+require('js-yaml');
 
 // Create the express app
 var app = express();
@@ -16,6 +18,9 @@ app.configure(function() {
 	app.use(app.router);
 });
 
+var config = require('/Users/lukevers/Desktop/m/plugins/Ocelot/config.yml');
+console.log(config);
+
 // 404 Page
 app.use(function(req, res, next){
 	res.render('error/404.jade', {title: "404 - Page Not Found", showFullNav: false, status: 404, url: req.url });
@@ -23,7 +28,7 @@ app.use(function(req, res, next){
 
 // Render the index page
 app.get('/', function(req, res){
-	res.render('index', { user: req.user });
+	res.render('index', { pageData: config });
 });
 
 app.listen(3000);
