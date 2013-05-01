@@ -1,7 +1,7 @@
 {
   "name": "Ocelot",
   "description": "An interactive webserver for Bukkit",
-  "version": "1.0.0 alpha",
+  "version": "1.0.0",
   "dependencies": {
     "express": "3.2.0",
     "jade": "0.29.0"
