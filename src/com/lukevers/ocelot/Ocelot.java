@@ -3,9 +3,9 @@ package com.lukevers.ocelot;
 import java.util.logging.Logger;
 
 import org.bukkit.Location;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -26,17 +26,17 @@ public final class Ocelot extends JavaPlugin {
 		log.info("Ocelot "+Version+" disabled");
 	} // close on disable
 	
-	@EventHandler 
+	@EventHandler  (priority = EventPriority.HIGHEST)
 	public void onPlayerLogin(PlayerLoginEvent event) {
 		updateConfig(event.getPlayer());
 	} // close on player login
 	
-	@EventHandler
+	@EventHandler (priority = EventPriority.HIGHEST)
 	public void onPlayerLogout(PlayerQuitEvent event) {
 		updateConfig(event.getPlayer());
 	} // close on player logout
 	
-	@EventHandler
+	@EventHandler (priority = EventPriority.HIGHEST)
 	public void onPlayerMove(PlayerMoveEvent event) {
 		updateConfig(event.getPlayer());
 	} // close on player move
@@ -59,8 +59,7 @@ public final class Ocelot extends JavaPlugin {
 	 * @param player
 	 */
 	private void updateConfig(Player player) {
-		// Get the configuration file and player name
-		FileConfiguration config = this.getConfig();
+		// Get the player name
 		String name = player.getName();
 		
 		// Set variables to be updated
@@ -71,13 +70,13 @@ public final class Ocelot extends JavaPlugin {
 		Location loc = player.getLocation();
 		
 		// Set the configuration file variables
-		config.set(name+".online", online);
-		config.set(name+".health", health);
-		config.set(name+".foodlevel", food);
-		config.set(name+".level", level);
-		config.set(name+".location.x", loc.getX());
-		config.set(name+".location.y", loc.getY());
-		config.set(name+".location.z", loc.getZ());
+		getConfig().set(name+".online", online);
+		getConfig().set(name+".health", health);
+		getConfig().set(name+".foodlevel", food);
+		getConfig().set(name+".level", level);
+		getConfig().set(name+".location.x", loc.getX());
+		getConfig().set(name+".location.y", loc.getY());
+		getConfig().set(name+".location.z", loc.getZ());
 	} // close update configuration file
 	
 	
