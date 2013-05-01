@@ -1,3 +1,7 @@
+# NodeJS
+node_modules
+
+# Java
 bin
 *.class
 .settings
