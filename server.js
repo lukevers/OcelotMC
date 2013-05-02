@@ -1,29 +1,16 @@
-//	Ocelot
 //	
+//	Ocelot
 //	server.js
-//
+//	
 
-var fs = require('fs');
 var express = require('express');
-var yaml = require('js-yaml');
-require('js-yaml');
+var fs = require('fs');
 
-// Create the express app
+var PORT = 3000;
+var PATH = '/Users/lukevers/Desktop/m/plugins/Ocelot/config.yml';
+
+// Configure Express 
 var app = express();
-
-// Just for the time being
-var path = '/Users/lukevers/Desktop/m/plugins/Ocelot/config.yml';
-
-var config = require(path);
-
-// Watch the config file
-fs.watchFile(path, function() {
-	var file = fs.readFileSync(path, 'utf8');	
-	newconfig = yaml.load(file);
-	Render(newconfig);
-});
-
-// Configure Express
 app.configure(function() {
 	app.set('views', __dirname + '/public');
 	app.set('view engine', 'jade');
@@ -32,19 +19,21 @@ app.configure(function() {
 	app.use(app.router);
 });
 
-// 404 Page
-app.use(function(req, res, next){
-	res.render('error/404.jade', {title: '404 - Page Not Found', showFullNav: false, status: 404, url: req.url });
+var server = require('http').Server(app);
+var io = require('socket.io').listen(server);
+
+fs.watchFile(PATH, function() {
+	var FILE = fs.readFileSync(PATH, 'utf8');	
+	socket.send(String(FILE));
 });
 
-// Listen port
-app.listen(3000);
-Render(config);
+io.sockets.on('connection', function(socket){
+	var FILE = fs.readFileSync(PATH, 'utf8');	
+	socket.send(String(FILE));
+});
 
-// Render
-function Render (newconf) {
-	console.log(newconf);
-	app.get('/', function(req, res){
-		res.render('index', { pageData: newconf });
-	});
-} // close render
+app.get('/', function(req, res){
+	res.render('index');
+});
+
+server.listen(PORT);

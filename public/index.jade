@@ -3,11 +3,23 @@ html
 	head
 		title Ocelot
 		link(rel="stylesheet", href="/css/style.css")
+		block scripts
+			script(src="/socket.io/socket.io.js")
+			script(src="/js/jquery.js")
+			script(src="/js/common.js")
+		script
+			var socket = io.connect('http://localhost:3000');
+			socket.on('message', function(message) {
+				alert(message);
+				var doc = jsyaml.load(message);
+				alert("hi");
+			});
+
 	body
-		for val, key in pageData
-			if (val.online)
-				.user 
-					.name #{key}
-					.online #{val.online} 
-					.hunger #{val.foodlevel} 
-					.health #{val.health} 
+		//for val, key in pageData
+		//	if (val.online)
+		//		.user 
+		//			.name #{key}
+		//			.online #{val.online} 
+		//			.hunger #{val.foodlevel} 
+		//			.health #{val.health} 
