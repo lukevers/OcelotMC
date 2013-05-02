@@ -11,7 +11,7 @@ html
 		script
 			var socket = io.connect('http://localhost:3000');
 			socket.on('message', function(message) {
-				create(message);
+				update(message);
 			});
 
 	body

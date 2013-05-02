@@ -3,10 +3,10 @@
 //	common.js
 //
 
-function create(yaml) {
+function update(yaml) {
 	var config = jsyaml.load(yaml);	
 	for (var user in config) {		
-		$('.users').append(
+		$('.users').html(
 		'<div class="user '+user+'">' +
 			'<div class="health">'+config[user].health+'</div>' +
 			'<div class="food">'+config[user].foodlevel+'</div>' +

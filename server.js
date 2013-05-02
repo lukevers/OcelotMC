@@ -24,7 +24,7 @@ var io = require('socket.io').listen(server);
 
 fs.watchFile(PATH, function() {
 	var FILE = fs.readFileSync(PATH, 'utf8');	
-	socket.send(String(FILE));
+	io.sockets.send(String(FILE));
 });
 
 io.sockets.on('connection', function(socket){
