@@ -6,13 +6,12 @@ html
 		block scripts
 			script(src="/socket.io/socket.io.js")
 			script(src="/js/jquery.js")
+			script(src="/js/js-yaml.js")
 			script(src="/js/common.js")
 		script
 			var socket = io.connect('http://localhost:3000');
 			socket.on('message', function(message) {
-				alert(message);
-				var doc = jsyaml.load(message);
-				alert("hi");
+				create(message);
 			});
 
 	body
