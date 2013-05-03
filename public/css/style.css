@@ -20,32 +20,26 @@ body {
 ==============================
 */
 
-.heart_full {
+.heart_full, .heart_half, .food_full, .food_half {
 	width: 7px;
 	height: 7px;
-	background-image: url('../img/heart_full.png');
 	display: inline-block;
+}
+
+.heart_full {
+	background-image: url('../img/heart_full.png');
 }
 
 .heart_half {
-	width: 7px;
-	height: 7px;
 	background-image: url('../img/heart_half.png');
-	display: inline-block;
 }
 
 .food_full {
-	width: 7px;
-	height: 7px;
 	background-image: url('../img/food_full.png');
-	display: inline-block;
 }
 
 .food_half {
-	width: 7px;
-	height: 7px;
 	background-image: url('../img/food_half.png');
-	display: inline-block;
 }
 
 /*
