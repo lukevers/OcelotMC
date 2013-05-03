@@ -3,17 +3,21 @@
 //	common.js
 //
 
+
+// The function update refreshes the divs
+// on the page in real-time with the help
+// of sockets.io. First, the yaml file is
+// parsed and the user's div is replaced.
 function update(yaml) {
 	var config = jsyaml.load(yaml);	
 	$('.users').empty();
-	
 	for (var user in config) {	
 		if (config[user].online == true) {
 			$('.users').append(
 			'<div class="user ' + user + '">' +
 				'<div class="name">' + user + '</div>' +
-				'<div class="health">' + makeLove(config[user].health) + '</div>' +
-				'<div class="food">' + makeNomNoms(config[user].foodlevel) + '</div>' +
+				'<div class="health">' + makeIcons(config[user].health, 'heart') + '</div>' +
+				'<div class="food">' + makeIcons(config[user].foodlevel, 'food') + '</div>' +
 				'<div class="location">' +
 					'<div class="x">' + config[user].location.x + '</div>' +
 					'<div class="y">' + config[user].location.y + '</div>' +
@@ -25,34 +29,18 @@ function update(yaml) {
 	} 
 } 
 
-function makeLove(hearts) {
-	var love = '';
-	hearts = hearts/2;
-	while(hearts > 0) {
-		if (hearts == .5) {
-			love += '<div class="heart_half"></div>&nbsp;';
-			hearts -= .5;
+function makeIcons(icon, type) {
+	var divs = '';
+	icon = icon/2;
+	while(icon > 0) {
+		if (icon == .5) {
+			divs += '<div class="'+type+'_half"></div>&nbsp;';
+			icon -= .5;
 		}
 		else {
-			love += '<div class="heart_full"></div>&nbsp;';
-			hearts--;
+			divs += '<div class="'+type+'_full"></div>&nbsp;';
+			icon--;
 		}
 	}
-	return love;
-}
-
-function makeNomNoms(food) {
-	var nomnom = '';
-	food = food/2;
-	while(food > 0) {
-		if (food == .5) {
-			nomnom += '<div class="food_half"></div>&nbsp;';
-			food -= .5;
-		}
-		else {
-			nomnom += '<div class="food_full"></div>&nbsp;';
-			food--;
-		}
-	}
-	return love;
+	return divs;
 }
