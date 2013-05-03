@@ -22,5 +22,5 @@ function update(yaml) {
 			'</div>'
 			);
 		}
-	} // close for loop
-} // close create
+	} 
+}
