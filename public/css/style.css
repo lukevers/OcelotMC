@@ -34,6 +34,20 @@ body {
 	display: inline-block;
 }
 
+.food_full {
+	width: 7px;
+	height: 7px;
+	background-image: url('../img/food_full.png');
+	display: inline-block;
+}
+
+.food_half {
+	width: 7px;
+	height: 7px;
+	background-image: url('../img/food_half.png');
+	display: inline-block;
+}
+
 /*
 ==============================
           USERS

@@ -13,7 +13,7 @@ function update(yaml) {
 			'<div class="user ' + user + '">' +
 				'<div class="name">' + user + '</div>' +
 				'<div class="health">' + makeLove(config[user].health) + '</div>' +
-				'<div class="food">' + config[user].foodlevel + '</div>' +
+				'<div class="food">' + makeNomNoms(config[user].foodlevel) + '</div>' +
 				'<div class="location">' +
 					'<div class="x">' + config[user].location.x + '</div>' +
 					'<div class="y">' + config[user].location.y + '</div>' +
@@ -26,18 +26,33 @@ function update(yaml) {
 } 
 
 function makeLove(hearts) {
-	var str = '';
+	var love = '';
 	hearts = hearts/2;
 	while(hearts > 0) {
 		if (hearts == .5) {
-			str += '<div class="heart_half"></div>&nbsp;';
+			love += '<div class="heart_half"></div>&nbsp;';
 			hearts -= .5;
 		}
 		else {
-			str += '<div class="heart_full"></div>&nbsp;';
+			love += '<div class="heart_full"></div>&nbsp;';
 			hearts--;
 		}
 	}
-	
-	return str;
+	return love;
+}
+
+function makeNomNoms(food) {
+	var nomnom = '';
+	food = food/2;
+	while(food > 0) {
+		if (food == .5) {
+			nomnom += '<div class="food_half"></div>&nbsp;';
+			food -= .5;
+		}
+		else {
+			nomnom += '<div class="food_full"></div>&nbsp;';
+			food--;
+		}
+	}
+	return love;
 }
