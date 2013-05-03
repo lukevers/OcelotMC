@@ -29,10 +29,19 @@ function update(yaml) {
 	} 
 } 
 
+// The function makeSmallNumber takes in
+// x, y, and z, and makes sure that they
+// only go to four decimal places at the
+// most.
 function makeSmallNumber(number) {
 	return Math.round(number*10000)/10000;
 }
 
+// The function makeIcons takes a number
+// (icon), from either hunger or health,
+// and figures out how many full hearts/
+// hungers and if there needs to be half
+// of a heart/hunger icon.
 function makeIcons(icon, type) {
 	var divs = '';
 	icon = icon/2;
