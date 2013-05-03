@@ -12,7 +12,7 @@ function update(yaml) {
 			$('.users').append(
 			'<div class="user ' + user + '">' +
 				'<div class="name">' + user + '</div>' +
-				'<div class="health">' + config[user].health + '</div>' +
+				'<div class="health">' + makeLove(config[user].health) + '</div>' +
 				'<div class="food">' + config[user].foodlevel + '</div>' +
 				'<div class="location">' +
 					'<div class="x">' + config[user].location.x + '</div>' +
@@ -23,4 +23,21 @@ function update(yaml) {
 			);
 		}
 	} 
+} 
+
+function makeLove(hearts) {
+	var str = '';
+	hearts = hearts/2;
+	while(hearts > 0) {
+		if (hearts == .5) {
+			str += '<div class="heart_half"></div>&nbsp;';
+			hearts -= .5;
+		}
+		else {
+			str += '<div class="heart_full"></div>&nbsp;';
+			hearts--;
+		}
+	}
+	
+	return str;
 }
