@@ -19,15 +19,19 @@ function update(yaml) {
 				'<div class="health">' + makeIcons(config[user].health, 'heart') + '</div>' +
 				'<div class="food">' + makeIcons(config[user].foodlevel, 'food') + '</div>' +
 				'<div class="location">' +
-					'<div class="x">' + config[user].location.x + '</div>' +
-					'<div class="y">' + config[user].location.y + '</div>' +
-					'<div class="z">' + config[user].location.z + '</div>' +
+					'<div class="x">' + makeSmallNumber(config[user].location.x) + '</div>' +
+					'<div class="y">' + makeSmallNumber(config[user].location.y) + '</div>' +
+					'<div class="z">' + makeSmallNumber(config[user].location.z) + '</div>' +
 				'</div>' +
 			'</div>'
 			);
 		}
 	} 
 } 
+
+function makeSmallNumber(number) {
+	return Math.round(number*10000)/10000;
+}
 
 function makeIcons(icon, type) {
 	var divs = '';
