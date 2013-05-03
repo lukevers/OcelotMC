@@ -2,6 +2,9 @@
 
 body {
 	margin: 0;
+	font-family: "Helvetica Neue", Helvetica;
+	font-size: 14px;
+	background-color: #000;
 }
 
 /*
@@ -11,7 +14,11 @@ body {
 */
 
 .header {
-	
+	padding: 10px;
+	background-color: #333;
+	font-weight: 900;
+	font-size: 24px;
+	color: #FFF;
 }
 
 /*
@@ -57,38 +64,48 @@ body {
 .user {
 	display: inline-block;
 	width: 150px;
-	padding: 10px;
 	margin: 25px;
-	border: 1px solid #CCC;
-	border-radius: 5px;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
+	border: 3px solid #222;
+	box-shadow: 0px 0px 2px #333;
 }
 
 .name {
-	
+	font-weight: 900;
+	color: #FFF;
+	background-color: #333;
+	padding: 5px;
 }
 
-.health {
-	
-}
-
-.food {
-	
+.food, .health {
+	background-color: #111;
 }
 
 .location {
-	
+	background-color: #333;
 }
 
-.x {
-	
+.x, .y, .z {
+	padding: 5px;
+	text-align: left;
+	color: #FFF;
 }
 
 .y {
-	
+	background-color: #222;
 }
 
-.z {
-	
+.x:before {
+	content: "x: ";
+}
+
+.y:before {
+	content: "y: ";
+}
+
+.z:before {
+	content: "z: ";
+}
+
+.x:before, .y:before, .z:before {
+	color: #666;
 }
