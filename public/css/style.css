@@ -21,11 +21,20 @@ body {
 */
 
 .users {
-	
+	margin: 25px auto;
+	width: 80%;
+	text-align: center;
 }
 
 .user {
-	
+	display: inline-block;
+	width: 150px;
+	padding: 10px;
+	margin: 25px;
+	border: 1px solid #CCC;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
 }
 
 .name {
